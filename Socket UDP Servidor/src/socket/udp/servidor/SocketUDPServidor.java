@@ -26,6 +26,8 @@ public class SocketUDPServidor {
 
     public SocketUDPServidor() {
         try {
+            thisIp = InetAddress.getLocalHost().getHostAddress();
+            System.out.println(thisIp);
             this.miSocket = new DatagramSocket(9107);
             host = InetAddress.getByName(thisIp);
         } catch (SocketException | UnknownHostException ex) {
@@ -34,12 +36,7 @@ public class SocketUDPServidor {
     }
 
     public static void main(String[] args) {
-        try {
-            //Reconoce la Direccion IP del HOST
-            thisIp = InetAddress.getLocalHost().getHostAddress();
-            JOptionPane.showMessageDialog(null, "Servidor Iniciado en " + thisIp + "\nEsperando conexión desde el Cliente");
-        } catch (UnknownHostException ex) {
-        }
+        JOptionPane.showMessageDialog(null, "Servidor Iniciado en " + thisIp + "\nEsperando conexión desde el Cliente");
         //Ejecuta la Clase Frame
         f = new Frame();
 
