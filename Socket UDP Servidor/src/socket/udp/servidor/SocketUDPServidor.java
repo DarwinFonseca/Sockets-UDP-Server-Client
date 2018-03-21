@@ -59,7 +59,7 @@ public class SocketUDPServidor {
             this.puerto = peticion.getPort();
             aux = new String(peticion.getData(), 0, peticion.getLength());
 
-            if (aux.equals("")) {
+            if (aux.equals("OK")) {
                 aux = "";
                 ObjJuego.Jugar();
                 System.out.println(ObjJuego.NumeroAleatorio);

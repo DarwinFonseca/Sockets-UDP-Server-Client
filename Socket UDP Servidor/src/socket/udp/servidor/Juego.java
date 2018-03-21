@@ -104,16 +104,17 @@ public class Juego {
     }
 
     public void Jugar() {
-        // SocketUDPServidor ObjUDP = new SocketUDPServidor();
+        //Limpia la variable Mensaje
         setMensaje();
         GenerarNumeroAleatorio();
+        //Busca el número generado en las cartas
         buscarNumero();
         //ObjJuego.obtenerNumero();
 
     }
 
     public void setMensaje() {
-        this.Mensaje = " <br> ";
+        this.Mensaje = "<html><body><center>";
     }
 
     public String getMensaje() {
