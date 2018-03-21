@@ -15,30 +15,34 @@ public class SocketUDPCliente {
     static GUI ObjGui = new GUI();
     static SocketUDPCliente ObjCliente = new SocketUDPCliente();
     private DatagramSocket miSocket;
-    private static InetAddress host;
+    static InetAddress host;
     private final int puerto = 9107;
     private static String ip;
-    
+
     public static void main(String[] args) {
 
-        ip = JOptionPane.showInputDialog(null,
-                "¿ Con qué IP\n quiere establecer conexión ?",
-                "127.0.0.1");
+        try {
+            ip = JOptionPane.showInputDialog(null,
+                    "¿ Con qué IP\n quiere establecer conexión ?",
+                    "127.0.0.1");
+            host = InetAddress.getByName(ip);
 
-        
-        ObjCliente.conectar("");
-        
-        ObjCliente.recibirDatos();
-        String Mensaje = JOptionPane.showInputDialog("Digite el valor: ");
-        ObjCliente.enviarDatos(Mensaje);
-        ObjCliente.recibirDatos();
+            System.out.println("ip: " + ip);
+            ObjCliente.conectar("");
+
+            ObjCliente.recibirDatos();
+            String Mensaje = JOptionPane.showInputDialog("Digite el valor: ");
+            ObjCliente.enviarDatos(Mensaje);
+            ObjCliente.recibirDatos();
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(SocketUDPCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public SocketUDPCliente() {
         try {
             this.miSocket = new DatagramSocket();
-            host = InetAddress.getByName(ip);
-        } catch (SocketException | UnknownHostException ex) {
+        } catch (SocketException ex) {
             Logger.getLogger(SocketUDPCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -46,7 +50,8 @@ public class SocketUDPCliente {
     void conectar(String msn) {
         try {
             byte[] mensaje = msn.getBytes();
-
+            System.out.println(host);
+            System.out.println(puerto);
             DatagramPacket miPaquete = new DatagramPacket(mensaje, msn.length(), host, puerto);
             miSocket.send(miPaquete);
 

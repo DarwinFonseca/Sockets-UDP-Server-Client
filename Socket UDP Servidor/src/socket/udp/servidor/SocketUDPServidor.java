@@ -15,11 +15,11 @@ public class SocketUDPServidor {
     static SocketUDPServidor ObjServidor = new SocketUDPServidor();
     private static Juego ObjJuego = new Juego();
     private DatagramSocket miSocket;
-    private InetAddress host;
     private int puerto = 9107;
     private static String aux;
     private static String thisIp;
     private static Frame f;
+    InetAddress host;
 
     public SocketUDPServidor(String a) {
     }
@@ -27,11 +27,12 @@ public class SocketUDPServidor {
     public SocketUDPServidor() {
         try {
             thisIp = InetAddress.getLocalHost().getHostAddress();
-            System.out.println(thisIp);
-            this.miSocket = new DatagramSocket(9107);
+            miSocket = new DatagramSocket(9107);
             host = InetAddress.getByName(thisIp);
-        } catch (SocketException | UnknownHostException ex) {
+        } catch (SocketException ex) {
             Logger.getLogger(SocketUDPServidor.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnknownHostException e) {
+            Logger.getLogger(SocketUDPServidor.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
@@ -85,14 +86,14 @@ public class SocketUDPServidor {
                     byte[] sendBuffer = ObjJuego.getMensaje().getBytes();
                     System.out.println("Se ha conectado desde " + host + ", por el puerto: " + puerto);
 
-                    DatagramPacket peticion2 = new DatagramPacket(sendBuffer, sendBuffer.length, host, puerto);
+                    DatagramPacket peticion2 = new DatagramPacket(sendBuffer, sendBuffer.length, this.host, puerto);
                     miSocket.send(peticion2);
                     break;
 
                 case "2":
                     byte[] buffer2 = aux.getBytes();
 
-                    DatagramPacket peticion3 = new DatagramPacket(buffer2, buffer2.length, host, puerto);
+                    DatagramPacket peticion3 = new DatagramPacket(buffer2, buffer2.length, this.host, puerto);
                     miSocket.send(peticion3);
                     break;
 
