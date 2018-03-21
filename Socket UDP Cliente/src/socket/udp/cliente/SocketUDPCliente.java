@@ -28,7 +28,7 @@ public class SocketUDPCliente {
             host = InetAddress.getByName(ip);
 
             System.out.println("ip: " + ip);
-            ObjCliente.conectar("");
+            ObjCliente.conectar("OK");
 
             ObjCliente.recibirDatos();
             String Mensaje = JOptionPane.showInputDialog("Digite el valor: ");
