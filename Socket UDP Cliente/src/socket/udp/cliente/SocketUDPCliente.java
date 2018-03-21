@@ -17,7 +17,8 @@ public class SocketUDPCliente {
     private DatagramSocket miSocket;
     private static InetAddress host;
     private final int puerto = 9107;
-    private static String ip;
+    private static String ip="127.0.0.1";
+    
     public static void main(String[] args) {
 
         ip = JOptionPane.showInputDialog(null,
