@@ -17,7 +17,7 @@ public class SocketUDPCliente {
     private DatagramSocket miSocket;
     private static InetAddress host;
     private final int puerto = 9107;
-    private static String ip="127.0.0.1";
+    private static String ip;
     
     public static void main(String[] args) {
 
@@ -37,7 +37,7 @@ public class SocketUDPCliente {
     public SocketUDPCliente() {
         try {
             this.miSocket = new DatagramSocket();
-            host = InetAddress.getByName(this.ip);
+            host = InetAddress.getByName(ip);
         } catch (SocketException | UnknownHostException ex) {
             Logger.getLogger(SocketUDPCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
