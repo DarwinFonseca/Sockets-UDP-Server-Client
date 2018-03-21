@@ -18,7 +18,7 @@ public class SocketUDPServidor {
     private InetAddress host;
     private int puerto = 9107;
     private static String aux;
-    private static String thisIp = "";
+    private static String thisIp;
     private static Frame f;
 
     public SocketUDPServidor(String a) {
@@ -27,7 +27,7 @@ public class SocketUDPServidor {
     public SocketUDPServidor() {
         try {
             this.miSocket = new DatagramSocket(9107);
-            host = InetAddress.getByName("127.0.0.1");
+            host = InetAddress.getByName(thisIp);
         } catch (SocketException | UnknownHostException ex) {
             Logger.getLogger(SocketUDPServidor.class.getName()).log(Level.SEVERE, null, ex);
         }
