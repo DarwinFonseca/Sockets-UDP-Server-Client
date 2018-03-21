@@ -35,7 +35,11 @@ public class Juego {
         for (int i = 0; i < Matriz.length; i++) {
             Mensaje += "<tr>";
             for (int j = 0; j < Matriz[0].length; j++) {
-                Mensaje += ("<td>" + Matriz[i][j] + " </td> ");
+                if (Matriz[i][j] == 0) {
+                Mensaje += ("<td></td>");
+                } else {
+                    Mensaje += ("<td>" + Matriz[i][j] + " </td> ");
+                }
             }
             Mensaje += (" </tr>");
         }
