@@ -42,11 +42,8 @@ public class SocketUDPServidor {
         f = new Frame();
 
         while (true) {
-            aux = "";
             ObjServidor.recibirDatos();
-            ObjServidor.enviarDatos("1");
-            ObjServidor.recibirDatos();
-            ObjServidor.enviarDatos("2");
+
         }
     }
 
@@ -63,14 +60,15 @@ public class SocketUDPServidor {
             aux = new String(peticion.getData(), 0, peticion.getLength());
 
             if (aux.equals("")) {
+                aux = "";
                 ObjJuego.Jugar();
                 System.out.println(ObjJuego.NumeroAleatorio);
-
+                ObjServidor.enviarDatos("1");
             } else {
-
                 System.out.println(new String(peticion.getData(), 0, peticion.getLength()));
                 aux = new String(peticion.getData(), 0, peticion.getLength());
                 aux = ObjJuego.consultarNumero(Integer.parseInt(aux));
+                ObjServidor.enviarDatos("2");
 
             }
         } catch (IOException ex) {
